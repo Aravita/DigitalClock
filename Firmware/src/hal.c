@@ -90,7 +90,7 @@ void Lesson0_HAL_InitDigitsTimer()
 
 	if (HAL_OK != HAL_TIM_Base_Init(&timer3Handler))
 	{
-		while (true) {  }
+		Lesson0_HAL_Error();
 	}
 
 	HAL_NVIC_SetPriority(TIM3_IRQn, 0, 0);
@@ -99,7 +99,7 @@ void Lesson0_HAL_InitDigitsTimer()
 
 	if (HAL_OK != HAL_TIM_Base_Start_IT(&timer3Handler))
 	{
-		while (true) {  }
+		Lesson0_HAL_Error();
 	}
 }
 
@@ -108,5 +108,24 @@ void TIM3_IRQHandler(void)
 	HAL_TIM_IRQHandler(&timer3Handler);
 
 	DigitsLogic_ShowNextCharacter();
+}
+
+void Lesson0_HAL_Error(void)
+{
+	__HAL_RCC_GPIOC_CLK_ENABLE();
+
+	GPIO_InitTypeDef GPIO_InitStructure = { 0 };
+
+	// PORT A
+	GPIO_InitStructure.Pin = GPIO_PIN_13;
+	GPIO_InitStructure.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStructure.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+	GPIO_InitStructure.Pull = GPIO_NOPULL;
+
+	HAL_GPIO_Init(GPIOC, &GPIO_InitStructure);
+
+	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET);
+
+	while (true) { }
 }
 

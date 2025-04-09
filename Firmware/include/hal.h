@@ -34,4 +34,7 @@ void Lesson0_HAL_LightDigit(uint8_t digit);
 /* Initialize digits timer */
 void Lesson0_HAL_InitDigitsTimer();
 
+/* Enter error state */
+void Lesson0_HAL_Error();
+
 #endif /* INCLUDE_HAL_H_ */

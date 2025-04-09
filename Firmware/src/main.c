@@ -64,6 +64,7 @@ int main(int argc, char* argv[])
 
   uint32_t currentNumber = 0;
 
+
   // Infinite loop
   while (true)
   {
