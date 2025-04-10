@@ -13,6 +13,8 @@ C_SRCS += \
 ../system/src/stm32f4-hal/stm32f4xx_hal_iwdg.c \
 ../system/src/stm32f4-hal/stm32f4xx_hal_pwr.c \
 ../system/src/stm32f4-hal/stm32f4xx_hal_rcc.c \
+../system/src/stm32f4-hal/stm32f4xx_hal_rcc_ex.c \
+../system/src/stm32f4-hal/stm32f4xx_hal_rtc.c \
 ../system/src/stm32f4-hal/stm32f4xx_hal_tim.c \
 ../system/src/stm32f4-hal/stm32f4xx_hal_tim_ex.c 
 
@@ -26,6 +28,8 @@ C_DEPS += \
 ./system/src/stm32f4-hal/stm32f4xx_hal_iwdg.d \
 ./system/src/stm32f4-hal/stm32f4xx_hal_pwr.d \
 ./system/src/stm32f4-hal/stm32f4xx_hal_rcc.d \
+./system/src/stm32f4-hal/stm32f4xx_hal_rcc_ex.d \
+./system/src/stm32f4-hal/stm32f4xx_hal_rtc.d \
 ./system/src/stm32f4-hal/stm32f4xx_hal_tim.d \
 ./system/src/stm32f4-hal/stm32f4xx_hal_tim_ex.d 
 
@@ -39,12 +43,21 @@ OBJS += \
 ./system/src/stm32f4-hal/stm32f4xx_hal_iwdg.o \
 ./system/src/stm32f4-hal/stm32f4xx_hal_pwr.o \
 ./system/src/stm32f4-hal/stm32f4xx_hal_rcc.o \
+./system/src/stm32f4-hal/stm32f4xx_hal_rcc_ex.o \
+./system/src/stm32f4-hal/stm32f4xx_hal_rtc.o \
 ./system/src/stm32f4-hal/stm32f4xx_hal_tim.o \
 ./system/src/stm32f4-hal/stm32f4xx_hal_tim_ex.o 
 
 
 # Each subdirectory must supply rules for building sources it contributes
 system/src/stm32f4-hal/%.o: ../system/src/stm32f4-hal/%.c system/src/stm32f4-hal/subdir.mk
+	@echo 'Building file: $<'
+	@echo 'Invoking: GNU Arm Cross C Compiler'
+	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=soft -Og -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -flto -fno-move-loop-invariants -Wall -Wextra -g3 -DDEBUG -DUSE_FULL_ASSERT -DSTM32F401xC -DUSE_HAL_DRIVER -DHSE_VALUE=25000000 -I"../include" -I"../system/include" -I"../system/include/cmsis" -I"../system/include/stm32f4-hal" -std=gnu11 -Wno-unused-parameter -Wno-conversion -Wno-sign-conversion -Wno-bad-function-cast -Wno-unused-variable -Wno-implicit-function-declaration -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -c -o "$@" "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+system/src/stm32f4-hal/stm32f4xx_hal_rcc_ex.o: ../system/src/stm32f4-hal/stm32f4xx_hal_rcc_ex.c system/src/stm32f4-hal/subdir.mk
 	@echo 'Building file: $<'
 	@echo 'Invoking: GNU Arm Cross C Compiler'
 	arm-none-eabi-gcc -mcpu=cortex-m4 -mthumb -mfloat-abi=soft -Og -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -flto -fno-move-loop-invariants -Wall -Wextra -g3 -DDEBUG -DUSE_FULL_ASSERT -DSTM32F401xC -DUSE_HAL_DRIVER -DHSE_VALUE=25000000 -I"../include" -I"../system/include" -I"../system/include/cmsis" -I"../system/include/stm32f4-hal" -std=gnu11 -Wno-unused-parameter -Wno-conversion -Wno-sign-conversion -Wno-bad-function-cast -Wno-unused-variable -Wno-implicit-function-declaration -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" -c -o "$@" "$<"

@@ -33,10 +33,14 @@
 #include <stdint.h>
 #include "diag/trace.h"
 
+#include "global_variables.h"
+
 #include "timer.h"
 
 #include "hal.h"
 #include "digits_logic.h"
+#include "rtc.h"
+#include "main.h"
 
 // Sample pragmas to cope with warnings. Please note the related line at
 // the end of this function, used to pop the compiler diagnostics status.
@@ -54,34 +58,46 @@ int main(int argc, char* argv[])
 
   DigitsLogic_Init();
 
-  uint8_t currentCharacters[LESSON_0_CHARACTERS_COUNT];
-  currentCharacters[0] = 0;
-  currentCharacters[1] = 0;
-  currentCharacters[2] = 0;
-  currentCharacters[3] = 0;
-  currentCharacters[4] = 0;
-  currentCharacters[5] = 0;
-
-  uint32_t currentNumber = 0;
 
 
   // Infinite loop
   while (true)
   {
-	  HAL_Delay(1000);
+	  Lesson0_RTC_PollRTC();
 
-	  currentNumber ++;
+	  uint8_t digitsToDisplay[LESSON_0_CHARACTERS_COUNT];
 
-	  currentCharacters[0] = currentNumber & 0b1111;
-	  currentCharacters[1] = (currentNumber >> 4) & 0b1111;
-	  currentCharacters[2] = (currentNumber >> 8) & 0b1111;
-	  currentCharacters[3] = (currentNumber >> 12) & 0b1111;
-	  currentCharacters[4] = (currentNumber >> 16) & 0b1111;
-	  currentCharacters[5] = (currentNumber >> 20) & 0b1111;
+//	  PrepareDateToDisplay(digitsToDisplay);
 
-	  DigitsLogic_SetNumberToDisplay(currentCharacters);
+	  PrepareTimeToDisplay(digitsToDisplay);
+
+	  DigitsLogic_SetNumberToDisplay(digitsToDisplay);
   }
   // Infinite loop, never return.
+}
+
+void PrepareTimeToDisplay(uint8_t digits[LESSON_0_CHARACTERS_COUNT])
+{
+	digits[0] = CurrentTime.Seconds & 0b00001111;
+	digits[1] = (CurrentTime.Seconds & 0b11110000) >> 4;
+
+	digits[2] = CurrentTime.Minutes & 0b00001111;
+	digits[3] = (CurrentTime.Minutes & 0b11110000) >> 4;
+
+	digits[4] = CurrentTime.Hours & 0b00001111;
+	digits[5] = (CurrentTime.Hours & 0b11110000) >> 4;
+}
+
+void PrepareDateToDisplay(uint8_t digits[LESSON_0_CHARACTERS_COUNT])
+{
+	digits[0] = CurrentDate.Year & 0b00001111;
+	digits[1] = (CurrentDate.Year & 0b11110000) >> 4;
+
+	digits[2] = (CurrentDate.Month & 0b00001111) | LESSON_0_HAL_DIGIT_POINT;
+	digits[3] = (CurrentDate.Month & 0b11110000) >> 4;
+
+	digits[4] = (CurrentDate.Date & 0b00001111) | LESSON_0_HAL_DIGIT_POINT;
+	digits[5] = (CurrentDate.Date & 0b11110000) >> 4;
 }
 
 #pragma GCC diagnostic pop

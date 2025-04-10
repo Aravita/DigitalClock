@@ -1,14 +1,15 @@
-src/hal.o: ../src/hal.c ../include/rtc.h \
+system/src/stm32f4-hal/stm32f4xx_hal_rtc.o: \
+ ../system/src/stm32f4-hal/stm32f4xx_hal_rtc.c \
+ ../system/include/stm32f4-hal/stm32f4xx_hal.h \
+ ../include/stm32f4xx_hal_conf.h \
+ ../system/include/stm32f4-hal/stm32f4xx_hal_rcc.h \
+ ../system/include/stm32f4-hal/stm32f4xx_hal_def.h \
  ../system/include/cmsis/stm32f4xx.h \
  ../system/include/cmsis/stm32f401xc.h ../system/include/cmsis/core_cm4.h \
  ../system/include/cmsis/cmsis_version.h \
  ../system/include/cmsis/cmsis_compiler.h \
  ../system/include/cmsis/cmsis_gcc.h ../system/include/cmsis/mpu_armv7.h \
  ../system/include/cmsis/system_stm32f4xx.h \
- ../system/include/stm32f4-hal/stm32f4xx_hal.h \
- ../include/stm32f4xx_hal_conf.h \
- ../system/include/stm32f4-hal/stm32f4xx_hal_rcc.h \
- ../system/include/stm32f4-hal/stm32f4xx_hal_def.h \
  ../system/include/stm32f4-hal/Legacy/stm32_hal_legacy.h \
  ../system/include/stm32f4-hal/stm32f4xx_hal_rcc_ex.h \
  ../system/include/stm32f4-hal/stm32f4xx_hal_gpio.h \
@@ -69,9 +70,11 @@ src/hal.o: ../src/hal.c ../include/rtc.h \
  ../system/include/stm32f4-hal/stm32f4xx_hal_spdifrx.h \
  ../system/include/stm32f4-hal/stm32f4xx_hal_dfsdm.h \
  ../system/include/stm32f4-hal/stm32f4xx_hal_lptim.h \
- ../system/include/stm32f4-hal/stm32f4xx_hal_mmc.h ../include/hal.h \
- ../include/digits_logic.h
-../include/rtc.h:
+ ../system/include/stm32f4-hal/stm32f4xx_hal_mmc.h
+../system/include/stm32f4-hal/stm32f4xx_hal.h:
+../include/stm32f4xx_hal_conf.h:
+../system/include/stm32f4-hal/stm32f4xx_hal_rcc.h:
+../system/include/stm32f4-hal/stm32f4xx_hal_def.h:
 ../system/include/cmsis/stm32f4xx.h:
 ../system/include/cmsis/stm32f401xc.h:
 ../system/include/cmsis/core_cm4.h:
@@ -80,10 +83,6 @@ src/hal.o: ../src/hal.c ../include/rtc.h \
 ../system/include/cmsis/cmsis_gcc.h:
 ../system/include/cmsis/mpu_armv7.h:
 ../system/include/cmsis/system_stm32f4xx.h:
-../system/include/stm32f4-hal/stm32f4xx_hal.h:
-../include/stm32f4xx_hal_conf.h:
-../system/include/stm32f4-hal/stm32f4xx_hal_rcc.h:
-../system/include/stm32f4-hal/stm32f4xx_hal_def.h:
 ../system/include/stm32f4-hal/Legacy/stm32_hal_legacy.h:
 ../system/include/stm32f4-hal/stm32f4xx_hal_rcc_ex.h:
 ../system/include/stm32f4-hal/stm32f4xx_hal_gpio.h:
@@ -145,5 +144,3 @@ src/hal.o: ../src/hal.c ../include/rtc.h \
 ../system/include/stm32f4-hal/stm32f4xx_hal_dfsdm.h:
 ../system/include/stm32f4-hal/stm32f4xx_hal_lptim.h:
 ../system/include/stm32f4-hal/stm32f4xx_hal_mmc.h:
-../include/hal.h:
-../include/digits_logic.h:

@@ -1,4 +1,4 @@
-src/hal.o: ../src/hal.c ../include/rtc.h \
+src/rtc.o: ../src/rtc.c ../include/rtc.h \
  ../system/include/cmsis/stm32f4xx.h \
  ../system/include/cmsis/stm32f401xc.h ../system/include/cmsis/core_cm4.h \
  ../system/include/cmsis/cmsis_version.h \
@@ -69,8 +69,7 @@ src/hal.o: ../src/hal.c ../include/rtc.h \
  ../system/include/stm32f4-hal/stm32f4xx_hal_spdifrx.h \
  ../system/include/stm32f4-hal/stm32f4xx_hal_dfsdm.h \
  ../system/include/stm32f4-hal/stm32f4xx_hal_lptim.h \
- ../system/include/stm32f4-hal/stm32f4xx_hal_mmc.h ../include/hal.h \
- ../include/digits_logic.h
+ ../system/include/stm32f4-hal/stm32f4xx_hal_mmc.h ../include/hal.h
 ../include/rtc.h:
 ../system/include/cmsis/stm32f4xx.h:
 ../system/include/cmsis/stm32f401xc.h:
@@ -146,4 +145,3 @@ src/hal.o: ../src/hal.c ../include/rtc.h \
 ../system/include/stm32f4-hal/stm32f4xx_hal_lptim.h:
 ../system/include/stm32f4-hal/stm32f4xx_hal_mmc.h:
 ../include/hal.h:
-../include/digits_logic.h:

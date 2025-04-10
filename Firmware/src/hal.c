@@ -1,5 +1,6 @@
 #include <stdbool.h>
 
+#include "rtc.h"
 #include "hal.h"
 #include "digits_logic.h"
 
@@ -32,6 +33,8 @@ void Lesson0_HAL_HardwareInit(void)
   HAL_GPIO_Init(GPIOB, &GPIO_InitStructure);
 
   Lesson0_HAL_InitDigitsTimer();
+
+  Lesson0_RTC_Init();
 }
 
 /* Show data byte on LEDs*/
