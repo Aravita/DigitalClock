@@ -69,11 +69,9 @@ src/main.o: ../src/main.c ../system/include/diag/trace.h \
  ../system/include/stm32f4-hal/stm32f4xx_hal_spdifrx.h \
  ../system/include/stm32f4-hal/stm32f4xx_hal_dfsdm.h \
  ../system/include/stm32f4-hal/stm32f4xx_hal_lptim.h \
- ../system/include/stm32f4-hal/stm32f4xx_hal_mmc.h ../include/timer.h \
- ../system/include/cmsis/cmsis_device.h \
- ../system/include/cmsis/stm32f4xx.h ../include/hal.h \
+ ../system/include/stm32f4-hal/stm32f4xx_hal_mmc.h ../include/hal.h \
  ../include/digits_logic.h ../include/rtc.h ../include/main.h \
- ../include/digits_logic.h
+ ../include/digits_logic.h ../include/interrupts.h
 ../system/include/diag/trace.h:
 ../include/global_variables.h:
 ../system/include/cmsis/stm32f4xx.h:
@@ -149,11 +147,9 @@ src/main.o: ../src/main.c ../system/include/diag/trace.h \
 ../system/include/stm32f4-hal/stm32f4xx_hal_dfsdm.h:
 ../system/include/stm32f4-hal/stm32f4xx_hal_lptim.h:
 ../system/include/stm32f4-hal/stm32f4xx_hal_mmc.h:
-../include/timer.h:
-../system/include/cmsis/cmsis_device.h:
-../system/include/cmsis/stm32f4xx.h:
 ../include/hal.h:
 ../include/digits_logic.h:
 ../include/rtc.h:
 ../include/main.h:
 ../include/digits_logic.h:
+../include/interrupts.h:

@@ -35,8 +35,6 @@
 
 #include "global_variables.h"
 
-#include "timer.h"
-
 #include "hal.h"
 #include "digits_logic.h"
 #include "rtc.h"
@@ -51,25 +49,29 @@
 
 int main(int argc, char* argv[])
 {
-
-  timer_start();
-
   Lesson0_HAL_HardwareInit();
 
   DigitsLogic_Init();
 
-
+  uint8_t digitsToDisplay[LESSON_0_CHARACTERS_COUNT];
 
   // Infinite loop
   while (true)
   {
 	  Lesson0_RTC_PollRTC();
 
-	  uint8_t digitsToDisplay[LESSON_0_CHARACTERS_COUNT];
-
-//	  PrepareDateToDisplay(digitsToDisplay);
-
-	  PrepareTimeToDisplay(digitsToDisplay);
+	  if (DateTimeCycleCounter < TIME_CYCLE_DURATION)
+	  {
+		  PrepareTimeToDisplay(digitsToDisplay);
+	  }
+	  else if (DateTimeCycleCounter >= TIME_CYCLE_DURATION && DateTimeCycleCounter < TIME_CYCLE_DURATION + DATE_CYCLE_DURATION)
+	  {
+		  PrepareDateToDisplay(digitsToDisplay);
+	  }
+	  else
+	  {
+		  Lesson0_HAL_Error();
+	  }
 
 	  DigitsLogic_SetNumberToDisplay(digitsToDisplay);
   }

@@ -22,6 +22,9 @@ RTC_HandleTypeDef RtcHandle = { 0 };
 RTC_TimeTypeDef CurrentTime;
 RTC_DateTypeDef CurrentDate;
 
+/* Time -> Date -> Time loop counter */
+uint32_t DateTimeCycleCounter = 0;
+
 
 
 #endif /* GLOBAL_VARIABLES_H_ */

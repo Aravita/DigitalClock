@@ -7,30 +7,30 @@ C_SRCS += \
 ../src/digits_logic.c \
 ../src/hal.c \
 ../src/initialize-hardware.c \
+../src/interrupts.c \
 ../src/main.c \
 ../src/rtc.c \
 ../src/stm32f4xx_hal_msp.c \
-../src/timer.c \
 ../src/write.c 
 
 C_DEPS += \
 ./src/digits_logic.d \
 ./src/hal.d \
 ./src/initialize-hardware.d \
+./src/interrupts.d \
 ./src/main.d \
 ./src/rtc.d \
 ./src/stm32f4xx_hal_msp.d \
-./src/timer.d \
 ./src/write.d 
 
 OBJS += \
 ./src/digits_logic.o \
 ./src/hal.o \
 ./src/initialize-hardware.o \
+./src/interrupts.o \
 ./src/main.o \
 ./src/rtc.o \
 ./src/stm32f4xx_hal_msp.o \
-./src/timer.o \
 ./src/write.o 
 
 
